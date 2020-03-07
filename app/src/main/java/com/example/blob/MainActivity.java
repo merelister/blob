@@ -5,21 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
 
+
+
 public class MainActivity extends AppCompatActivity {
-/*this is the home screen when opening the app. it shows the blob character(s) and
-buttons to add money to savings or track spending
- */
-double saved;
-double spent;
+    double saved;
+    double spent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //TODO: find views for buttons and other elements
 
@@ -53,6 +55,19 @@ double spent;
     protected void onDestroy() {
         super.onDestroy();
         //TODO: write data
+
+    }
+
+    public void writeData(View v) {
+        String fileContents = saved + "," + spent;
+        FileOutputStream outputStream;
+        try {
+            outputStream = openFileOutput("studentdata.txt", Context.MODE_APPEND);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 //testing working with a different branch
