@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DCDCDC"
+    tools:context=".Track">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="426dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="640dp"
+        android:background="#FFFFFF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar9"
+        android:layout_width="445dp"
+        android:layout_height="109dp"
+        android:background="#41C65E"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/trackText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:text="Name of Goal"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_go_to_save"
+        android:layout_width="173dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="34dp"
+        app:cardBackgroundColor="#1CB8DA"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar2"
+        app:layout_constraintEnd_toStartOf="@+id/card_go_to_spend"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_submit_save"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/go_to_savings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="saveData"
+            android:text="Add Saving"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="555dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_go_to_spend"
+        android:layout_width="173dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="34dp"
+        app:cardBackgroundColor="#FF6464"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_submit_save"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/go_to_spend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="saveData"
+            android:text="Add Spending"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="213dp"
+            tools:layout_editor_absoluteY="551dp" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_saved_overview"
+        android:layout_width="341dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@id/card_spent_overview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBar">
+
+        <TextView
+            android:id="@+id/total_savings"
+            android:layout_width="178dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="$500"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/savedText"
+            android:layout_width="163dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="180dp"
+            android:gravity="center"
+            android:text="Saved"
+            android:textSize="20sp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_spent_overview"
+        android:layout_width="340dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="50dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/card_go_to_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_saved_overview"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/total_spend"
+            android:layout_width="178dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="$200"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/spendText"
+            android:layout_width="164dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="180dp"
+            android:gravity="center"
+            android:text="Spent"
+            android:textSize="20sp" />
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="337dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@id/card_saved_overview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Welcome Back Olivia!"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/trackText"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar9"
+        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintStart_toEndOf="@+id/toolbar9"
+        app:layout_constraintTop_toTopOf="@+id/toolbar9" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
