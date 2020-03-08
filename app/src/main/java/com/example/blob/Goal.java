@@ -34,7 +34,7 @@ implements getGoal.OnFragmentInteractionListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
         getGoal.newInstance("500", "200"); //test values
-        onFragmentInteraction("test string");
+        onFragmentInteraction("onFragInteract");
 
         //TODO: display goal at top of page
 

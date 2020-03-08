@@ -31,6 +31,9 @@ public class getGoal extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private static TextView tvGoal;
+    private static TextView tvSaved;
+
 
     public getGoal() {
         // Required empty public constructor
@@ -69,10 +72,12 @@ public class getGoal extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inf = inflater.inflate(R.layout.fragment_get_goal, container, false);
-        TextView tvGoal = (TextView) inf.findViewById(R.id.goal);
-        tvGoal.setText(mGoal);
-        TextView tvSaved = (TextView) inf.findViewById(R.id.saved);
-        tvSaved.setText(mSaved);
+        try {
+            tvGoal = inf.findViewById(R.id.fragment);
+            tvGoal.setText(mGoal);
+            tvSaved = inf.findViewById(R.id.saved);
+            tvSaved.setText(mSaved);
+        } catch(Exception e) {}
         return inf;
     }
 
