@@ -3,6 +3,7 @@ package com.example.blob;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -64,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         saveData();
+    }
+
+    public void track(View v) { //temp method to go to Track activity
+        Intent intent = new Intent(this, Track.class);
+        startActivity(intent);
     }
 
 
