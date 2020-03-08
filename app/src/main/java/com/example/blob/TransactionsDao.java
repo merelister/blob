@@ -15,8 +15,6 @@ public interface TransactionsDao {
     @Query("SELECT * FROM t_table ORDER BY date DESC") //select all transactions
     LiveData<List<Transactions>> getAll();
 
-    @Query("SELECT * FROM t_table WHERE id IN (:ids)")
-    List<Transactions> loadAllByIds(int[] ids);
 
     @Query("SELECT * FROM t_table WHERE type LIKE :type ORDER BY date DESC")
     LiveData<List<Transactions>> getAllType(String type);
@@ -34,7 +32,7 @@ public interface TransactionsDao {
     void deleteAll();
 
     //sum spending/saving transactions
-    @Query("SELECT sum(amount) FROM t_table WHERE type= :type GROUP BY type")
+    @Query("SELECT sum(amount) FROM t_table GROUP BY type HAVING type=:type")
     String sumTransactions(String type);
 
 }

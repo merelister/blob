@@ -1,6 +1,11 @@
 package com.example.blob;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Context;
@@ -17,18 +22,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import static java.lang.Double.parseDouble;
 
 
 public class MainActivity extends AppCompatActivity {
-    double saved;
-    double spent;
-    Button submitSaved;
-    EditText savings;
-    TextView currentSavings;
-    AppDatabase db;
+    Button gotoGoal; //this button is temporary (will be app menu bar)
+    private TrackViewModel TVM; //testing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,32 +39,33 @@ public class MainActivity extends AppCompatActivity {
 
 
         //find views for buttons and other elements
-        submitSaved = findViewById(R.id.button);
-        savings = findViewById(R.id.savings);
-        currentSavings = findViewById(R.id.currentSavings);
+        gotoGoal = findViewById(R.id.goal);
 
-        //get instance of the database
-        //db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "transactions_db").build();
-        //db = AppDatabase.getInstance(this);
+        //TODO: query db for total saved and spent
 
-        //TODO: read data
-        /*String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        Transactions t = new Transactions("7","saved", date);
+        //TODO: add button to input data
 
-        try {
-            db.transactionsDao().insertTransaction(t);
-            db.transactionsDao().sumTransactions("saved");
-            currentSavings.setText(db.transactionsDao().getAll().toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } */
+        //testing - can the main activity access the db?
+        final TListAdaptor adaptor = new TListAdaptor(this);
+        RecyclerView rview = findViewById(R.id.rview);
+        rview.setAdapter(adaptor);
+        rview.setLayoutManager(new LinearLayoutManager(this));
 
-
-        //File file = new File(this.getFilesDir(), "userdata.txt");
-        //saved = 5.4;
+        TVM = ViewModelProviders.of(this).get(TrackViewModel.class);
+        TVM.getAllTransactions().observe(this, new Observer<List<Transactions>>(){
+            @Override
+            public void onChanged(@Nullable final List<Transactions> t) {
+                // Update the cached copy of the Transactions in the adapter.
+                adaptor.setTransactions(t);
+            }
+        });
     }
 
-    public void addSaved(View v) { //triggered when you click the +savings button
+    public void goal(View v) { //temp method to go to Goal activity
+        Intent intent = new Intent(this, Goal.class);
+        startActivity(intent);
+    }
+    /* public void addSaved(View v) { //triggered when you click the +savings button
         double toAdd;
         if(savings.getText().toString() != null) {
             toAdd = parseDouble(savings.getText().toString());
@@ -70,9 +73,12 @@ public class MainActivity extends AppCompatActivity {
         }
         currentSavings.setText("Current savings: " + saved);
     }
+
+
     public void addSpent(View v) { //triggered when you click the -spending button
 
     }
+
 
     public void saveData() { //write values to a text file
         String toWrite = saved + "," + spent;
@@ -85,16 +91,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    */
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        saveData();
-    }
 
-    public void goal(View v) { //temp method to go to Goal activity
-        Intent intent = new Intent(this, Goal.class);
-        startActivity(intent);
-    }
+
+
 
 }

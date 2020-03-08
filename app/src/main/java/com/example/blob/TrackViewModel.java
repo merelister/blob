@@ -17,6 +17,14 @@ public class TrackViewModel extends AndroidViewModel {
         tRepo = new TRepository(application);
         allTransactions = tRepo.getAll();
     }
+
     LiveData<List<Transactions>> getAllTransactions() {return allTransactions;}
-    public void insert(Transactions t) {tRepo.insert(t);}
+
+    public void insert(Transactions t) {
+        tRepo.insert(t);
+    }
+
+    public String sumTransactions(String type) {
+        return tRepo.sumTransactions(type);
+    }
 }
