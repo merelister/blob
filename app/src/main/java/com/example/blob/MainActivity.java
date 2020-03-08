@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //TODO: find views for buttons and other elements
+        //find views for buttons and other elements
         submitSaved = findViewById(R.id.button);
         savings = findViewById(R.id.savings);
         currentSavings = findViewById(R.id.currentSavings);
 
         //TODO: read data
-        File file = new File(this.getFilesDir(), "userdata.txt");
+        //File file = new File(this.getFilesDir(), "userdata.txt");
         saved = 5.4;
     }
 
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void saveData(View v) { //write values to a text file
+    public void saveData() { //write values to a text file
         String toWrite = saved + "," + spent;
         FileOutputStream outputStream;
         try {
@@ -59,15 +58,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //TODO: write data
-
+        saveData();
     }
 
 
