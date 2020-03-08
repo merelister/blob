@@ -1,5 +1,6 @@
 package com.example.blob;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,26 +12,29 @@ import java.util.List;
 @Dao
 public interface TransactionsDao {
     //example queries
-    @Query("SELECT * FROM transactions ORDER BY date DESC") //select all transactions
-    List<Transactions> getAll();
+    @Query("SELECT * FROM t_table ORDER BY date DESC") //select all transactions
+    LiveData<List<Transactions>> getAll();
 
-    @Query("SELECT * FROM transactions WHERE id IN (:ids)")
+    @Query("SELECT * FROM t_table WHERE id IN (:ids)")
     List<Transactions> loadAllByIds(int[] ids);
 
-    @Query("SELECT * FROM transactions WHERE type LIKE :type LIMIT 1")
-    Transactions findByName(String type);
+    @Query("SELECT * FROM t_table WHERE type LIKE :type ORDER BY date DESC")
+    LiveData<List<Transactions>> getAllType(String type);
 
     @Insert
-    void insertTransaction(Transactions transactions);
+    void insert(Transactions t);
 
     @Delete
-    void deleteTransaction(Transactions transactions);
+    void deleteTransaction(Transactions t);
 
     @Update
-    void updateTransaction(Transactions transactions);
+    void updateTransaction(Transactions t);
+
+    @Query("DELETE FROM t_table")
+    void deleteAll();
 
     //sum spending/saving transactions
-    @Query("SELECT sum(amount) FROM transactions WHERE type= :type GROUP BY type")
+    @Query("SELECT sum(amount) FROM t_table WHERE type= :type GROUP BY type")
     String sumTransactions(String type);
 
 }
