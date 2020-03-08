@@ -13,11 +13,15 @@ import java.util.List;
 public class TListAdaptor extends RecyclerView.Adapter<TListAdaptor.tViewHolder> {
 
     class tViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tItemView;
+        private final TextView tItemView; //amount
+        private final TextView tDesc; //description
+        private final TextView tDate; //date
 
         private tViewHolder(View itemView) {
             super(itemView);
             tItemView = itemView.findViewById(R.id.textView);
+            tDesc = itemView.findViewById(R.id.desc);
+            tDate = itemView.findViewById(R.id.date);
         }
     }
     private final LayoutInflater mInflater;
@@ -36,6 +40,8 @@ public class TListAdaptor extends RecyclerView.Adapter<TListAdaptor.tViewHolder>
         if (transactionsList != null) {
             Transactions current = transactionsList.get(position);
             holder.tItemView.setText(current.getAmount()); //use getter method to return info if non-public
+            holder.tDesc.setText(current.getDesc());
+            holder.tDate.setText(current.getDate());
         } else {
             // Covers the case of data not being ready yet.
             holder.tItemView.setText("No transactions");

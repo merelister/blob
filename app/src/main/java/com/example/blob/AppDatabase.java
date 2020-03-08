@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-@Database(entities = {Transactions.class}, version = 2, exportSchema = false)
+@Database(entities = {Transactions.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DB_NAME = "transactions_db";
     private static AppDatabase instance;
@@ -57,7 +57,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final TransactionsDao mDao;
-        String[] amounts = {"1.5", "2.8", "3.1"};
+        String[] amounts = {"1.5", "2.8", "3.1, 8.4"};
 
         PopulateDbAsync(AppDatabase db) {
             mDao = db.transactionsDao();
@@ -71,7 +71,7 @@ public abstract class AppDatabase extends RoomDatabase {
             mDao.deleteAll();
             String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             for (int i = 0; i <= amounts.length - 1; i++) {
-                Transactions t = new Transactions(amounts[i],"spent", date);
+                Transactions t = new Transactions(amounts[i],"spent", date, "test description");
                 mDao.insert(t);
             }
             return null;
