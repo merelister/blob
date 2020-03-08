@@ -10,15 +10,14 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
-        android:layout_width="421dp"
-        android:layout_height="168dp"
-        android:layout_marginTop="644dp"
+        android:layout_width="426dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="640dp"
         android:background="#FFFFFF"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar9"
@@ -190,7 +189,7 @@
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@id/card_saved_overview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar9" />
 
@@ -208,6 +207,7 @@
         app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toEndOf="@+id/toolbar9"
         app:layout_constraintTop_toTopOf="@+id/toolbar9" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
