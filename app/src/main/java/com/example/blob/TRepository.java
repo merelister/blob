@@ -18,7 +18,7 @@ public class TRepository {
         AppDatabase db = AppDatabase.getDatabase(application);
         transactionsDao = db.transactionsDao();
         allTransactions = transactionsDao.getAll();
-//        sumSpent = transactionsDao.sumTransactions("spent");
+  //      sumSpent = transactionsDao.sumTransactions("spent");
         //sumSaved = transactionsDao.sumTransactions("saved");
     }
     LiveData<List<Transactions>> getAll() {
@@ -36,7 +36,8 @@ public class TRepository {
     } */
     public String sumTransactions(String type) {
        try {
-           return new sumAsyncTask(transactionsDao).execute().get();
+           String sum = new sumAsyncTask(transactionsDao).execute().get();
+           return sum;
        } catch (Exception e) {}
         //return final Result get ()
         //return

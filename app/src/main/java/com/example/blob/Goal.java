@@ -2,6 +2,7 @@ package com.example.blob;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +20,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Goal extends AppCompatActivity {
+public class Goal extends AppCompatActivity
+implements getGoal.OnFragmentInteractionListener{
     //This page will show your goal at the top and your transaction history
     private TrackViewModel TVM;
     TextView txt;
@@ -31,7 +33,9 @@ public class Goal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
         //getIntent();
-
+        getGoal.newInstance("500", "200");
+        onFragmentInteraction("test string");
+        //Fragment fragment = getGoal.OnFragmentInteractionListener();
         //TODO: display goal at top of page
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview); //transaction history
@@ -50,16 +54,24 @@ public class Goal extends AppCompatActivity {
             }
         });
 
-        txt = findViewById(R.id.textView);
+        //txt = findViewById(R.id.textView);
+        /*String sum;
+        sum = TVM.sumTransactions("spent");
+        //txt.setText(sum);
+        //txt.setText(TVM.sumTransactions("spent")); //total spent
+        */
 
 
+
+    }
+    public void onFragmentInteraction(String test) {
+        Toast.makeText(this, test, Toast.LENGTH_SHORT).show();
     }
     public void addTransaction(View v) {
         Intent intent = new Intent(this, Track.class);
         startActivityForResult(intent,NEW_ENTRY_REQUEST_CODE );
-
-        //txt.setText(TVM.sumTransactions("spent")); //total spent
     }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
