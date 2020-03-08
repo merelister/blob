@@ -30,7 +30,7 @@ public class Goal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
-        getIntent();
+        //getIntent();
 
         //TODO: display goal at top of page
 
@@ -39,6 +39,7 @@ public class Goal extends AppCompatActivity {
         recyclerView.setAdapter(adaptor);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         add = findViewById(R.id.button2);
+
         TVM = ViewModelProviders.of(this).get(TrackViewModel.class);
 
         TVM.getAllTransactions().observe(this, new Observer<List<Transactions>>(){
@@ -50,12 +51,14 @@ public class Goal extends AppCompatActivity {
         });
 
         txt = findViewById(R.id.textView);
-        txt.setText(TVM.sumTransactions("spent"));
+
 
     }
     public void addTransaction(View v) {
         Intent intent = new Intent(this, Track.class);
         startActivityForResult(intent,NEW_ENTRY_REQUEST_CODE );
+
+        //txt.setText(TVM.sumTransactions("spent")); //total spent
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

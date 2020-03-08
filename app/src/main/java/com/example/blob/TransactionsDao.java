@@ -32,7 +32,7 @@ public interface TransactionsDao {
     void deleteAll();
 
     //sum spending/saving transactions
-    @Query("SELECT sum(amount) FROM t_table WHERE type= :type GROUP BY type")
+    @Query("SELECT sum(amount) FROM t_table GROUP BY type HAVING type=:type")
     String sumTransactions(String type);
 
 }

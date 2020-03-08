@@ -18,8 +18,8 @@ public class TRepository {
         AppDatabase db = AppDatabase.getDatabase(application);
         transactionsDao = db.transactionsDao();
         allTransactions = transactionsDao.getAll();
-        sumSpent = transactionsDao.sumTransactions("spent");
-        sumSaved = transactionsDao.sumTransactions("saved");
+//        sumSpent = transactionsDao.sumTransactions("spent");
+        //sumSaved = transactionsDao.sumTransactions("saved");
     }
     LiveData<List<Transactions>> getAll() {
         return allTransactions;
@@ -34,22 +34,27 @@ public class TRepository {
             return sumSaved;
         else return "oops error";
     } */
-    public String sumTransactions() {new sumAsyncTask(transactionsDao).execute("spent");}
+    public String sumTransactions(String type) {
+       try {
+           return new sumAsyncTask(transactionsDao).execute().get();
+       } catch (Exception e) {}
+        //return final Result get ()
+        //return
+        return "";
+    }
+
     private static class insertAsyncTask extends AsyncTask<Transactions, Void, Void> {
-
         private TransactionsDao mAsyncTaskDao;
-
         insertAsyncTask(TransactionsDao dao) {
             mAsyncTaskDao = dao;
         }
-
         @Override
         protected Void doInBackground(final Transactions... params) {
             mAsyncTaskDao.insert(params[0]);
             return null;
         }
     }
-    private static class sumAsyncTask extends AsyncTask<Transactions, Void, Void> {
+    private static class sumAsyncTask extends AsyncTask<Transactions, Void, String> {
 
         private TransactionsDao mAsyncTaskDao;
 
@@ -58,10 +63,11 @@ public class TRepository {
         }
 
         @Override
-        protected Void doInBackground(final Transactions... params) {
-            mAsyncTaskDao.sumTransactions("spent");
-            return null;
+        protected String doInBackground(final Transactions...type) {
+            String sum = mAsyncTaskDao.sumTransactions("spent");
+            return sum;
         }
+        protected void onPostExecute(String result) {}
     }
 }
 
