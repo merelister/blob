@@ -17,5 +17,12 @@ public class Transactions {
     public String type;
 
     @ColumnInfo(name = "date")
-    public String data;
+    public String date;
+
+    public Transactions(int id, String amount, String type, String date) {
+        this.id = id;
+        this.amount = amount;
+        this.type = type;
+        this.date = date;
+    }
 }

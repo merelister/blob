@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import static java.lang.Double.parseDouble;
 
@@ -38,11 +41,15 @@ public class MainActivity extends AppCompatActivity {
         currentSavings = findViewById(R.id.currentSavings);
 
         //get instance of the database
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "transactions").build();
-
+        //db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "transactions_db").build();
+        db = AppDatabase.getInstance(this);
         //TODO: read data
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        Transactions t = new Transactions(2,4.5,"saved", date);
+        db.transactionsDao().insertTransaction(t);
+        //db.transactionsDao().sumTransactions("saved");
         //File file = new File(this.getFilesDir(), "userdata.txt");
-        saved = 5.4;
+        //saved = 5.4;
     }
 
     public void addSaved(View v) { //triggered when you click the +savings button
