@@ -2,7 +2,6 @@ package com.example.blob;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,7 +24,8 @@ implements getGoal.OnFragmentInteractionListener{
     //This page will show your goal at the top and your transaction history
     private TrackViewModel TVM;
     TextView txt;
-    Button add;
+    Button addSavings;
+    Button addSpending;
 
     public static final int NEW_ENTRY_REQUEST_CODE = 1;
     @Override
@@ -42,7 +42,8 @@ implements getGoal.OnFragmentInteractionListener{
         final TListAdaptor adaptor = new TListAdaptor(this);
         recyclerView.setAdapter(adaptor);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        add = findViewById(R.id.button2);
+        addSavings = findViewById(R.id.goalSavings);
+        addSpending = findViewById(R.id.goalSpend);
 
         TVM = ViewModelProviders.of(this).get(TrackViewModel.class);
 

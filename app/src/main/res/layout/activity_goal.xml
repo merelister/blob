@@ -6,9 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".Goal">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar9"
+        android:layout_width="419dp"
+        android:layout_height="111dp"
+        android:background="#41C65E"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/trackText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:text="Goal"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@android:color/transparent"
+        android:text="&#60; Home"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="308dp"
+        android:id="@+id/scrollView2"
+        android:layout_width="263dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar9"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,32 +68,17 @@
                 android:layout_weight="1"
                 android:text="TextView" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="addTransaction"
-                android:text="add" />
-
             <fragment
                 android:id="@+id/fragment"
                 android:name="com.example.blob.getGoal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="101dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="29dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    tools:listitem="@layout/recyclerview_item" />
 
                 <!--<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/transactionHistory"
@@ -62,4 +91,62 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="357dp"
+        android:layout_height="429dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="239dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview"
+        app:layout_constraintVertical_bias="0.807"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar9">
+
+        <Button
+            android:id="@+id/goalSavings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:onClick="addTransaction"
+            android:text="Add Savings"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+            app:layout_constraintEnd_toStartOf="@+id/goalSpend"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar9" />
+
+        <Button
+            android:id="@+id/goalSpend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:onClick="addTransaction"
+            android:text="Add Spending"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/goalSavings"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar9"
+            app:layout_constraintVertical_bias="0.438" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
