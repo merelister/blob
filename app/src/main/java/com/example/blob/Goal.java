@@ -24,18 +24,18 @@ public class Goal extends AppCompatActivity
 implements getGoal.OnFragmentInteractionListener{
     //This page will show your goal at the top and your transaction history
     private TrackViewModel TVM;
-    TextView txt;
     Button add;
-
     public static final int NEW_ENTRY_REQUEST_CODE = 1;
+    String type;
+    //fragment gg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
-        //getIntent();
-        getGoal.newInstance("500", "200");
+        getGoal.newInstance("500", "200"); //test values
         onFragmentInteraction("test string");
-        //Fragment fragment = getGoal.OnFragmentInteractionListener();
+
         //TODO: display goal at top of page
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview); //transaction history
@@ -53,26 +53,28 @@ implements getGoal.OnFragmentInteractionListener{
                 adaptor.setTransactions(t);
             }
         });
-
-        //txt = findViewById(R.id.textView);
-        /*String sum;
-        sum = TVM.sumTransactions("spent");
-        //txt.setText(sum);
-        //txt.setText(TVM.sumTransactions("spent")); //total spent
-        */
-
-
-
     }
     public void onFragmentInteraction(String test) {
         Toast.makeText(this, test, Toast.LENGTH_SHORT).show();
     }
+
+    //add transaction (open Track Activity, pass data back to this class then insert)
     public void addTransaction(View v) {
         Intent intent = new Intent(this, Track.class);
         startActivityForResult(intent,NEW_ENTRY_REQUEST_CODE );
     }
-
-
+    //add spending
+    public void addSpending(View v) {
+        Intent intent = new Intent(this, Track.class);
+        type = "spent";
+        startActivityForResult(intent,NEW_ENTRY_REQUEST_CODE );
+    }
+    //add savingss
+    public void addSaving(View v) {
+        Intent intent = new Intent(this, Track.class);
+        type = "saved";
+        startActivityForResult(intent, NEW_ENTRY_REQUEST_CODE);
+    }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -80,7 +82,7 @@ implements getGoal.OnFragmentInteractionListener{
         String amt = data.getStringExtra(Track.EXTRA_REPLY);
         String desc = data.getStringExtra("desc");
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        Transactions t = new Transactions(amt,"spent",date,desc);
+        Transactions t = new Transactions(amt,type,date,desc);
             TVM.insert(t);
         } else {
             Toast.makeText(

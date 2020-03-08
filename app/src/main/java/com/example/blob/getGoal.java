@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -30,6 +31,7 @@ public class getGoal extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
     public getGoal() {
         // Required empty public constructor
     }
@@ -42,7 +44,7 @@ public class getGoal extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment getGoal.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static getGoal newInstance(String param1, String param2) {
         getGoal fragment = new getGoal();
         Bundle args = new Bundle();
@@ -59,14 +61,19 @@ public class getGoal extends Fragment {
             mGoal = getArguments().getString(ARG_GOAL);
             mSaved = getArguments().getString(ARG_SAVED);
         }
-        //Button testB = getActivity().findViewById(R.id.button2);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_get_goal, container, false);
+        View inf = inflater.inflate(R.layout.fragment_get_goal, container, false);
+        TextView tvGoal = (TextView) inf.findViewById(R.id.goal);
+        tvGoal.setText(mGoal);
+        TextView tvSaved = (TextView) inf.findViewById(R.id.saved);
+        tvSaved.setText(mSaved);
+        return inf;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
