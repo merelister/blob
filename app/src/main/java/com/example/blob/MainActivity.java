@@ -1,6 +1,7 @@
 package com.example.blob;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button submitSaved;
     EditText savings;
     TextView currentSavings;
+    AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         submitSaved = findViewById(R.id.button);
         savings = findViewById(R.id.savings);
         currentSavings = findViewById(R.id.currentSavings);
+
+        //get instance of the database
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "transactions").build();
 
         //TODO: read data
         //File file = new File(this.getFilesDir(), "userdata.txt");

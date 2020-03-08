@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface TransactionsDao {
     //example queries
-    @Query("SELECT * FROM transactions")
+    @Query("SELECT * FROM transactions ORDER BY date DESC")
     List<Transactions> getAll();
 
     @Query("SELECT * FROM transactions WHERE id IN (:ids)")
