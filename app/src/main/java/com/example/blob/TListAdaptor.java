@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TListAdaptor extends RecyclerView.Adapter<TListAdaptor.tViewHolder> {
 
-    class tViewHolder extends RecyclerView.ViewHolder {
+    class tViewHolder extends RecyclerView.ViewHolder { //each holder of the transaction history contains all of the following
         private final TextView tItemView; //amount
         private final TextView tDesc; //description
         private final TextView tDate; //date
@@ -36,7 +36,7 @@ public class TListAdaptor extends RecyclerView.Adapter<TListAdaptor.tViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(tViewHolder holder, int position) {
+    public void onBindViewHolder(tViewHolder holder, int position) { //manages transaction history to get elements in order
         if (transactionsList != null) {
             Transactions current = transactionsList.get(position);
             holder.tItemView.setText(current.getAmount()); //use getter method to return info if non-public
@@ -52,7 +52,6 @@ public class TListAdaptor extends RecyclerView.Adapter<TListAdaptor.tViewHolder>
         transactionsList = t;
         notifyDataSetChanged();
     }
-
     // getItemCount() is called many times, and when it is first called,
     // transactionsList has not been updated (means initially, it's null, and we can't return null).
     @Override

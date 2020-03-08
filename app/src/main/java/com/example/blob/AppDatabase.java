@@ -57,7 +57,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final TransactionsDao mDao;
-        String[] amounts = {"1.5", "2.8", "3.1, 8.4"};
+        String[] amounts = {"$1.52", "$2.80", "$3.11", "$8.46"};
 
         PopulateDbAsync(AppDatabase db) {
             mDao = db.transactionsDao();

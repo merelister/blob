@@ -2,7 +2,9 @@ package com.example.blob;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,27 +18,35 @@ import static java.lang.Double.parseDouble;
 
 public class Track extends AppCompatActivity {
 //this is where the user inputs new saving/spendings
-    EditText saved, spent;
-    Button save;
+public static final String EXTRA_REPLY =
+        "com.example.android.blob.REPLY";
+
+    private  EditText mAmount;
+    private EditText mDesc;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track);
+        mAmount = findViewById(R.id.amount);
+        mDesc = findViewById(R.id.desc);
 
-        getIntent();
-
-        saved = findViewById(R.id.saved);
-        spent = findViewById(R.id.spent);
-        save = findViewById(R.id.save);
-    }
-
-    public void saveData(View v) { //onClick of Save button
-        double amtSaved = parseDouble(saved.getText().toString());
-        double amtSpent = parseDouble(spent.getText().toString());
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        //TODO: write data to MySQLite
-
-        Toast.makeText(this, "saved: " + amtSaved + "\nspent: " + amtSpent + "\ndate: " + date, Toast.LENGTH_LONG).show();
+        final Button button = findViewById(R.id.save);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent replyIntent = new Intent();
+                if (TextUtils.isEmpty(mAmount.getText())) {
+                    setResult(RESULT_CANCELED, replyIntent);
+                } else {
+                    String amount = mAmount.getText().toString();
+                    String desc = mDesc.getText().toString();
+                    replyIntent.putExtra(EXTRA_REPLY,amount);
+                    //replyIntent.putExtra("amount", amount);
+                    replyIntent.putExtra("desc", desc);
+                    setResult(RESULT_OK, replyIntent);
+                }
+                finish();
+            }
+        });
     }
 }
