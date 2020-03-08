@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(this);
         //TODO: read data
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        Transactions t = new Transactions(2,4.5,"saved", date);
-        db.transactionsDao().insertTransaction(t);
+//        Transactions t = new Transactions(2,4.5,"saved", date);
+//        db.transactionsDao().insertTransaction(t);
         //db.transactionsDao().sumTransactions("saved");
         //File file = new File(this.getFilesDir(), "userdata.txt");
         //saved = 5.4;
