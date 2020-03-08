@@ -57,7 +57,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final TransactionsDao mDao;
-        String[] amounts = {"$1.52", "$2.80", "$3.11", "$8.46"};
+        //String[] amounts = {"$1.52", "$2.80", "$3.11", "$8.46"};
 
         PopulateDbAsync(AppDatabase db) {
             mDao = db.transactionsDao();
@@ -70,10 +70,16 @@ public abstract class AppDatabase extends RoomDatabase {
             // when it is first created
             mDao.deleteAll();
             String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-            for (int i = 0; i <= amounts.length - 1; i++) {
+           /* for (int i = 0; i <= amounts.length - 1; i++) {
                 Transactions t = new Transactions(amounts[i],"spent", date, "test description");
                 mDao.insert(t);
-            }
+            } */
+           Transactions t = new Transactions("$2.30","spent",date, "candy");
+           mDao.insert(t);
+           Transactions m = new Transactions("$10.00","saved",date, "allowance");
+           mDao.insert(m);
+           Transactions n = new Transactions("$5.99","spent",date, "lunch");
+           mDao.insert(n);
             return null;
         }
     }

@@ -31,10 +31,10 @@
         android:id="@+id/trackText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="58dp"
         android:text="Goal"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,33 +65,28 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="362dp"
         android:layout_height="293dp"
         android:layout_margin="16dp"
-        android:layout_marginTop="250dp"
-        android:layout_marginBottom="239dp"
-        app:layout_constraintBottom_toTopOf="@id/toolbar2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerview"
-        app:layout_constraintVertical_bias="0.807"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar9"
         tools:listitem="@layout/recyclerview_item" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="200dp"
+        android:layout_height="64dp"
+        android:dividerPadding="40dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar9">
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview">
 
         <Button
             android:id="@+id/goalSavings"
@@ -211,5 +206,16 @@
             tools:layout_editor_absoluteX="303dp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transaction History"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trackText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
