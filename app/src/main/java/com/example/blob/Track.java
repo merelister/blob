@@ -1,6 +1,7 @@
 package com.example.blob;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,14 +34,20 @@ public static final String EXTRA_REPLY =
         mDesc = findViewById(R.id.desc);
 
         final Button button = findViewById(R.id.save);
+        CardView card = findViewById(R.id.card_submit_spend);
         TextView text = findViewById(R.id.howmuchsave);
         String type = getIntent().getStringExtra("type");
         if(type.equals("spent")) {
             text.setText(R.string.transaction_spent_text);
             button.setText(R.string.spent);
+            button.setBackgroundColor(getResources().getColor(R.color.spendingRed));
+            card.setBackgroundColor(getResources().getColor(R.color.spendingRed));
         } else { //type = saved
             text.setText(R.string.transaction_saved_text);
             button.setText(R.string.saved);
+            button.setBackgroundColor(getResources().getColor(R.color.savingBlue));
+            card.setBackgroundColor(getResources().getColor(R.color.savingBlue));
+
         }
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

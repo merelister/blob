@@ -22,7 +22,7 @@
         android:id="@+id/toolbar9"
         android:layout_width="445dp"
         android:layout_height="109dp"
-        android:background="#41C65E"
+        android:background="@color/toolbarGreen"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:cardBackgroundColor="#41C65E"
         app:cardCornerRadius="12dp"
         app:layout_constraintBottom_toTopOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,6 +65,7 @@
             android:background="@android:color/transparent"
             android:onClick="saveData"
             android:text="Save"
+            android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>

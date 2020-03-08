@@ -33,10 +33,10 @@ implements getGoal.OnFragmentInteractionListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
-        //getIntent();
-        getGoal.newInstance("500", "200");
-        onFragmentInteraction("test string");
-        //Fragment fragment = getGoal.OnFragmentInteractionListener();
+
+       // getGoal.newInstance("500", "200");
+       // onFragmentInteraction("test string");
+
         //TODO: display goal at top of page
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview); //transaction history

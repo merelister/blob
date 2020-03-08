@@ -10,7 +10,7 @@
         android:id="@+id/toolbar9"
         android:layout_width="419dp"
         android:layout_height="111dp"
-        android:background="#41C65E"
+        android:background="@color/toolbarGreen"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,43 +54,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-
-            <fragment
-                android:id="@+id/fragment"
-                android:name="com.example.blob.getGoal"
-                android:layout_width="101dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="29dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <!--<androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/transactionHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -125,8 +89,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
+            android:background="@color/savingBlue"
             android:onClick="addSavings"
             android:text="Add Savings"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toTopOf="@+id/recyclerview"
             app:layout_constraintEnd_toStartOf="@+id/goalSpend"
             app:layout_constraintHorizontal_bias="0.5"
@@ -140,8 +107,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
+            android:background="@color/spendingRed"
             android:onClick="addSpending"
             android:text="Add Spending"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toTopOf="@+id/recyclerview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
