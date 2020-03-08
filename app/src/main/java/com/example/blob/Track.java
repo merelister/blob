@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -32,6 +33,15 @@ public static final String EXTRA_REPLY =
         mDesc = findViewById(R.id.desc);
 
         final Button button = findViewById(R.id.save);
+        TextView text = findViewById(R.id.howmuchsave);
+        String type = getIntent().getStringExtra("type");
+        if(type.equals("spent")) {
+            text.setText(R.string.transaction_spent_text);
+            button.setText(R.string.spent);
+        } else { //type = saved
+            text.setText(R.string.transaction_saved_text);
+            button.setText(R.string.saved);
+        }
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();

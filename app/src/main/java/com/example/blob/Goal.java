@@ -26,6 +26,7 @@ implements getGoal.OnFragmentInteractionListener{
     TextView txt;
     Button addSavings;
     Button addSpending;
+    String type;
 
     public static final int NEW_ENTRY_REQUEST_CODE = 1;
     @Override
@@ -70,6 +71,19 @@ implements getGoal.OnFragmentInteractionListener{
     }
     public void addTransaction(View v) {
         Intent intent = new Intent(this, Track.class);
+
+        startActivityForResult(intent,NEW_ENTRY_REQUEST_CODE );
+    }
+    public void addSavings(View v) {
+        Intent intent = new Intent(this, Track.class);
+        type = "saved";
+        intent.putExtra("type", type);
+        startActivityForResult(intent,NEW_ENTRY_REQUEST_CODE );
+    }
+    public void addSpending(View v) {
+        Intent intent = new Intent(this, Track.class);
+        type = "spent";
+        intent.putExtra("type", type);
         startActivityForResult(intent,NEW_ENTRY_REQUEST_CODE );
     }
 
@@ -81,12 +95,12 @@ implements getGoal.OnFragmentInteractionListener{
         String amt = data.getStringExtra(Track.EXTRA_REPLY);
         String desc = data.getStringExtra("desc");
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        Transactions t = new Transactions(amt,"spent",date,desc);
+        Transactions t = new Transactions(amt,type,date,desc);
             TVM.insert(t);
         } else {
             Toast.makeText(
                     getApplicationContext(),
-                    "not saved",
+                    "Data was not saved",
                     Toast.LENGTH_SHORT).show();
         }
     }
